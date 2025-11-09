@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swasthya Jyoti Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>🩺 Swasthya Jyoti</h2>
+    <a href="#" onclick="showSection('dashboard')">📊 Dashboard</a>
+    <a href="#" onclick="showSection('states')">🌍 States Data</a>
+    <a href="#" onclick="showSection('trends')">📈 Disease Trends</a>
+    <a href="#" onclick="showSection('reports')">📑 Reports</a>
+    <a href="#" onclick="showSection('settings')">⚙️ Settings</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main">
+    <header>
+      <h1 id="page-title">Dashboard</h1>
+      <button onclick="alert('Logging Out...')">Logout</button>
+    </header>
+
+    <!-- Dashboard Section -->
+    <div id="dashboard" class="section">
+      <div class="cards">
+        <div class="card"><h3>Total Residents</h3><p id="totalResidents">0</p></div>
+        <div class="card"><h3>Total Registered</h3><p id="totalRegistered">0</p></div>
+        <div class="card"><h3>Avg Disease Prediction %</h3><p id="avgPrediction">0%</p></div>
+      </div>
+      <canvas id="overviewChart"></canvas>
+    </div>
+
+    <!-- States Data -->
+    <div id="states" class="section" style="display:none;">
+      <h2>State-wise Data</h2>
+      <table id="statesTable">
+        <thead>
+          <tr>
+            <th>State</th>
+            <th>Total Residents</th>
+            <th>Registered</th>
+            <th>Disease Prediction %</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Trends Section -->
+    <div id="trends" class="section" style="display:none;">
+      <h2>Disease Trends</h2>
+      <canvas id="diseaseChart"></canvas>
+    </div>
+
+    <!-- Reports Section -->
+    <div id="reports" class="section" style="display:none;">
+      <h2>Reports</h2>
+      <p>Downloadable reports will be available here.</p>
+    </div>
+
+    <!-- Settings Section -->
+    <div id="settings" class="section" style="display:none;">
+      <h2>Settings</h2>
+      <p>Customize your dashboard here.</p>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
