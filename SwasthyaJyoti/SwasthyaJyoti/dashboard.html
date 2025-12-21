@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SwasthyaJyoti — Dashboard</title>
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="common-styles.css">
+  <style>
+        header button {
+      background: #e63946;
+      border: none;
+      padding: 0.5rem 1rem;
+      color: white;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    header button:hover {
+      background: #c72c3b;
+    }
+    .kpi-grid {
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .kpi-card {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .kpi-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: #023047;
+    }
+    .kpi-card p {
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+    .kpi-blue { color: #007bff; }
+    .kpi-cyan { color: #17a2b8; }
+    .kpi-red { color: #dc3545; }
+  </style>
+</head>
+<body>
+  <div class="page-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div>
+        <div class="brand">
+          <img src="images/logo.png" alt="logo" />
+          <h2>SwasthyaJyoti</h2>
+          <div class="sub">Your Health, Our Mission</div>
+        </div>
+        <nav>
+          <a href="dashboard.html" class="active"><i class="fa fa-chart-pie"></i> Dashboard</a>
+          <a href="statesData.html"><i class="fa fa-map"></i> States Data</a>
+          <a href="trends.html"><i class="fa fa-chart-line"></i> Disease Trends</a>
+          <a href="reports.html"><i class="fa fa-file-alt"></i> Reports</a>
+          <a href="settings.html"><i class="fa fa-cog"></i> Settings</a>
+          <a href="help.html"><i class="fa fa-circle-question"></i> Help Centre</a>
+          <a href="contact.html"><i class="fa fa-envelope"></i> Contact Us</a>
+        </nav>
+      </div>
+      <div class="footer-note">&copy; 2025 SwasthyaJyoti</div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="page-content">
+
+      <!-- Password Protection -->
+      <div id="authCard" class="center-container">
+        <div class="form-card wide-card">
+          <h2><i class="fa fa-lock"></i> Officer Access</h2>
+          <p class="form-sub">Enter the password to unlock the dashboard</p>
+          <div class="form-group">
+            <label for="dashboardPass"><i class="fa fa-key"></i> Password</label>
+            <input type="password" id="dashboardPass" placeholder="Enter Password" required>
+          </div>
+          <button class="btn-primary full-btn" onclick="checkDashboardAccess()">Unlock</button>
+        </div>
+      </div>
+
+      <!-- Dashboard Content -->
+      <div id="dashboardContent" style="display:none;">
+        <header>
+          <h1>Dashboard</h1>
+          <button onclick="window.location.href='index.html'" title="Logout">
+            <i class="fa fa-power-off"></i> Logout
+          </button>
+        </header>
+
+        <!-- Health Metrics -->
+        <div class="grid grid-4">
+          <div class="card metric">
+            <div>
+              <p>Total Migrant Records</p>
+              <h2>12,847</h2>
+              <span class="trend-up">▲ +12.5%</span>
+            </div>
+            <div class="icon-box bg-primary"><i class="fa fa-users"></i></div>
+          </div>
+          <div class="card metric">
+            <div>
+              <p>Health Screenings</p>
+              <h2>8,923</h2>
+              <span class="trend-up">▲ +8.2%</span>
+            </div>
+            <div class="icon-box bg-health"><i class="fa fa-heartbeat"></i></div>
+          </div>
+          <div class="card metric">
+            <div>
+              <p>Disease Cases</p>
+              <h2>247</h2>
+              <span class="trend-down">▼ -5.1%</span>
+            </div>
+            <div class="icon-box bg-warning"><i class="fa fa-virus"></i></div>
+          </div>
+          <div class="card metric">
+            <div>
+              <p>Recovery Rate</p>
+              <h2>94.8%</h2>
+              <span class="trend-up">▲ +2.3%</span>
+            </div>
+            <div class="icon-box bg-success"><i class="fa fa-arrow-up-right-dots"></i></div>
+          </div>
+        </div>
+
+        <!-- State-wise & Disease Alerts & Analytics -->
+        <div class="grid grid-2" style="margin-top:20px;">
+          <!-- State-wise -->
+          <div class="card">
+            <h3><i class="fa fa-map-marker-alt"></i> State-wise Migrant Distribution</h3>
+            <div style="margin-top:15px;">
+              <div class="state-row">
+                <div class="state-info"><div class="state-bar"></div><div><p><b>Maharashtra</b></p><p style="font-size:0.8rem;color:#666">3,247 migrants</p></div></div>
+                <span class="badge medium">Medium Risk</span>
+              </div>
+              <div class="state-row">
+                <div class="state-info"><div class="state-bar"></div><div><p><b>Gujarat</b></p><p style="font-size:0.8rem;color:#666">2,156 migrants</p></div></div>
+                <span class="badge low">Low Risk</span>
+              </div>
+              <div class="state-row">
+                <div class="state-info"><div class="state-bar"></div><div><p><b>Karnataka</b></p><p style="font-size:0.8rem;color:#666">1,893 migrants</p></div></div>
+                <span class="badge high">High Risk</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Disease Alerts -->
+          <div class="card">
+            <h3><i class="fa fa-triangle-exclamation"></i> Disease Alerts</h3>
+            <div style="margin-top:15px;">
+              <div>
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <p>Respiratory Infections</p>
+                  <span class="badge high">High</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <small>89 cases</small>
+                  <div class="progress"><div style="width:89%; background:red;"></div></div>
+                </div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <p>Skin Conditions</p>
+                  <span class="badge medium">Medium</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <small>67 cases</small>
+                  <div class="progress"><div style="width:67%; background:orange;"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Analytics + Graph Side by Side -->
+        <div class="grid grid-2" style="margin-top:20px;">
+          <!-- Migrant Analytics Dashboard -->
+          <div class="card">
+            <h3><i class="fa fa-database"></i> Migrant Analytics</h3>
+            <div class="kpi-grid">
+              <div class="kpi-card">
+                <h3>Total Migrants</h3>
+                <p id="totalMigrants" class="kpi-blue">0</p>
+              </div>
+              <div class="kpi-card">
+                <h3>Registered Migrants</h3>
+                <p id="totalRegistered" class="kpi-cyan">0</p>
+              </div>
+              <div class="kpi-card">
+                <h3>Avg % Affected</h3>
+                <p id="avgAffected" class="kpi-red">0%</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Disease Trends Chart -->
+          <div class="card">
+            <h3><i class="fa fa-chart-bar"></i> Disease Trends (Overview)</h3>
+            <div class="chart-container">
+              <canvas id="overviewChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="card" style="margin-top:20px;">
+          <h3><i class="fa fa-bolt"></i> Quick Actions</h3>
+          <div class="grid grid-3 actions" style="margin-top:15px;">
+            <button><i class="fa fa-user-plus"></i><span>Add New Patient</span></button>
+            <button><i class="fa fa-heart-pulse"></i><span>Health Screening</span></button>
+            <button><i class="fa fa-file-medical"></i><span>Medical Records</span></button>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+          <p>&copy; 2025 SwasthyaJyoti | Connecting Communities with Care</p>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script>
+    function checkDashboardAccess() {
+      const password = document.getElementById("dashboardPass").value;
+      if (password === "ditsa1234") {
+        document.getElementById("authCard").style.display = "none";
+        document.getElementById("dashboardContent").style.display = "block";
+        loadDashboardData(); // Load data after unlocking
+      } else {
+        alert("❌ Incorrect password!");
+      }
+    }
+
+    function loadDashboardData() {
+      const states = ["Andhra Pradesh","Assam","Bihar","Delhi","Gujarat","Karnataka","Maharashtra","Tamil Nadu","Uttar Pradesh","West Bengal"];
+      const newArrivals = [20000,30000,50000,60000,35000,40000,60000,40000,75000,70000];
+      const registered = [12000,20000,30000,40000,20000,25000,40000,30000,50000,45000];
+      const affected = [3000,5000,8000,2000,4000,5000,12000,6000,15000,10000];
+
+      // KPI values
+      const totalMigrants = newArrivals.reduce((a,b) => a+b, 0);
+      const totalRegistered = registered.reduce((a,b) => a+b, 0);
+      const avgAffected = ((affected.reduce((a,b) => a+b, 0) / totalMigrants) * 100).toFixed(2);
+
+      document.getElementById("totalMigrants").textContent = totalMigrants.toLocaleString();
+      document.getElementById("totalRegistered").textContent = totalRegistered.toLocaleString();
+      document.getElementById("avgAffected").textContent = avgAffected + "%";
+
+      // Chart.js
+      const ctx = document.getElementById("overviewChart").getContext("2d");
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: states,
+          datasets: [
+            { label: "New Arrivals", data: newArrivals, backgroundColor: "#007bff" },
+            { label: "Registered Migrants", data: registered, backgroundColor: "#17a2b8" },
+            { label: "Affected Migrants", data: affected, backgroundColor: "#dc3545" }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { position: "top" } },
+          scales: { y: { beginAtZero: true } }
+        }
+      });
+    }
+  </script>
+</body>
+</html>

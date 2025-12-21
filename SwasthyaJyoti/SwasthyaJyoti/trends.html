@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SwasthyaJyoti — Disease Trends</title>
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="common-styles.css">
+  <style>
+    /* ---------- Disease Trends Page Styling ---------- */
+
+/* Page header (filters + title) */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  color: #023047;
+}
+
+.header p {
+  margin: 0.4rem 0 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+header button {
+      background: #e63946;
+      border: none;
+      padding: 0.5rem 1rem;
+      color: white;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    header button:hover {
+      background: #c72c3b;
+    }
+
+/* Buttons */
+.btn {
+  background: #0a9396;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: #007f83;
+}
+
+.btn.active {
+  background: #007f83;
+  font-weight: 600;
+}
+
+/* Grid layouts */
+.grid {
+  display: grid;
+  gap: 1.5rem; /* ✅ consistent spacing */
+  margin-bottom: 1.5rem; /* ✅ space below each grid */
+}
+
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.grid-4 {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+/* Card base */
+.card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card h3 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: #023047;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Metric cards */
+.card.metric {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem;
+}
+
+.card.metric h2 {
+  margin: 0.3rem 0;
+  font-size: 1.6rem;
+  color: #023047;
+}
+
+.card.metric p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.card.metric small {
+  font-size: 0.8rem;
+  display: block;
+  margin-top: 0.3rem;
+}
+
+/* Bar chart styles */
+.bar-container {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  height: 180px;
+  margin-top: 1rem;
+}
+
+.bar {
+  flex: 1;
+  background: #0a9396;
+  border-radius: 4px 4px 0 0;
+}
+
+/* Progress bars */
+.progress {
+  background: #eaeaea;
+  border-radius: 6px;
+  overflow: hidden;
+  height: 10px;
+  margin: 6px 0 14px;
+}
+
+.progress div {
+  height: 100%;
+}
+
+/* Risk cards */
+.risk {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
+  margin-bottom: 1rem;
+}
+
+.risk .prob {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0.4rem 0;
+}
+
+.risk .prob-high {
+  color: #e63946;
+}
+
+.risk .prob-mid {
+  color: #f4a261;
+}
+
+  </style>
+</head>
+<body>
+  <div class="page-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div>
+        <div class="brand">
+          <img src="images/logo.png" alt="logo" />
+          <h2>SwasthyaJyoti</h2>
+          <div class="sub">Your Health, Our Mission</div>
+        </div>
+        <nav>
+          <a href="dashboard.html">
+            <i class="fa fa-chart-pie"></i> Dashboard
+          </a>
+          <a href="statesData.html">
+            <i class="fa fa-map"></i> States Data
+          </a>
+          <a href="trends.html" class="active">
+            <i class="fa fa-chart-line"></i> Disease Trends
+          </a>
+          <a href="reports.html">
+            <i class="fa fa-file-alt"></i> Reports
+          </a>
+          <a href="settings.html">
+            <i class="fa fa-cog"></i> Settings
+          </a>
+          <a href="help.html">
+            <i class="fa fa-circle-question"></i> Help Centre
+          </a>
+          <a href="contact.html">
+            <i class="fa fa-envelope"></i> Contact Us
+          </a>
+        </nav>
+      </div>
+      <div class="footer-note">&copy; 2025 SwasthyaJyoti</div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="page-content">
+      <header>
+        <h1>Disease Trends</h1>
+        <button onclick="window.location.href='index.html'" title="Logout">
+          <i class="fa fa-power-off"></i> Logout
+        </button>
+      </header>
+
+      <!-- Trends Section -->
+      <div class="header">
+        <div>
+          <h1>Healthcare Analytics</h1>
+          <p>Disease trends and predictive insights for migrant health</p>
+        </div>
+        <div>
+          <button class="btn active" onclick="setPeriod('week')">Week</button>
+          <button class="btn" onclick="setPeriod('month')">Month</button>
+          <button class="btn" onclick="setPeriod('quarter')">Quarter</button>
+          <button class="btn" onclick="setPeriod('year')">Year</button>
+          <button class="btn"><i class="fa fa-file-export"></i> Export Data</button>
+        </div>
+      </div>
+
+      <!-- Key Metrics -->
+      <div class="grid grid-4">
+        <div class="card metric">
+          <div>
+            <p>Disease Detection Rate</p>
+            <h2>89.3%</h2>
+            <small style="color:green">+2.1% from last month</small>
+          </div>
+          <span><i class="fa fa-chart-column fa-2x" style="color:#007bff"></i></span>
+        </div>
+        <div class="card metric">
+          <div>
+            <p>Prevention Success</p>
+            <h2>76.8%</h2>
+            <small style="color:green">+5.2% from last month</small>
+          </div>
+          <span><i class="fa fa-bolt fa-2x" style="color:#f4a261"></i></span>
+        </div>
+        <div class="card metric">
+          <div>
+            <p>High Risk Cases</p>
+            <h2>247</h2>
+            <small style="color:red">+12 from last week</small>
+          </div>
+          <span><i class="fa fa-triangle-exclamation fa-2x" style="color:#e63946"></i></span>
+        </div>
+        <div class="card metric">
+          <div>
+            <p>Screening Coverage</p>
+            <h2>94.2%</h2>
+            <small style="color:green">+1.8% from last month</small>
+          </div>
+          <span><i class="fa fa-users fa-2x" style="color:#2a9d8f"></i></span>
+        </div>
+      </div>
+
+      <!-- Charts Section -->
+      <div class="grid grid-2">
+        <!-- Disease Trends -->
+        <div class="card">
+          <h3><i class="fa fa-virus"></i> Disease Trends (6 Months)</h3>
+          <div>
+            <p>Respiratory Infections (June: 55)</p>
+            <div class="bar-container">
+              <div class="bar" style="height:55%"></div>
+              <div class="bar" style="height:65%"></div>
+              <div class="bar" style="height:45%"></div>
+              <div class="bar" style="height:75%"></div>
+              <div class="bar" style="height:54%"></div>
+              <div class="bar" style="height:70%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Demographics -->
+        <div class="card">
+          <h3><i class="fa fa-person"></i> Age Demographics</h3>
+          <p>0-18: 2341 (18.2%)</p>
+          <div class="progress"><div style="width:18.2%; background:#007bff"></div></div>
+          <p>19-35: 4567 (35.5%)</p>
+          <div class="progress"><div style="width:55.5%; background:#0a9396"></div></div>
+          <p>36-50: 3789 (29.5%)</p>
+          <div class="progress"><div style="width:29.5%; background:#f4a261"></div></div>
+        </div>
+      </div>
+
+      <!-- Risk Predictions -->
+      <div class="card">
+        <h3><i class="fa fa-triangle-exclamation"></i> Predictive Risk Analysis</h3>
+        <div class="grid grid-2">
+          <div class="risk">
+            <p>Respiratory Outbreak <i class="fa fa-arrow-trend-up"></i></p>
+            <p class="prob prob-high">72%</p>
+            <div class="progress"><div style="width:72%; background:red"></div></div>
+            <small>Expected timeline: 2-3 weeks</small>
+          </div>
+          <div class="risk">
+            <p>Malnutrition Cases <i class="fa fa-minus"></i></p>
+            <p class="prob prob-mid">45%</p>
+            <div class="progress"><div style="width:45%; background:orange"></div></div>
+            <small>Expected timeline: 1 month</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="site-footer">
+        <p>&copy; 2025 SwasthyaJyoti | Connecting Communities with Care</p>
+      </footer>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="common.js"></script>
+  <script>
+    // Load chart for disease trends on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      loadDiseaseTrends();
+    });
+  </script>
+</body>
+</html>

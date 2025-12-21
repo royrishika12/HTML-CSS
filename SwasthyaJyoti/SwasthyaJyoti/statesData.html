@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SwasthyaJyoti — States Data</title>
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="sub-style.css">
+  <style>
+        header button {
+      background: #e63946;
+      border: none;
+      padding: 0.5rem 1rem;
+      color: white;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    header button:hover {
+      background: #c72c3b;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div>
+        <div class="brand">
+          <img src="images/logo.png" alt="logo" />
+          <h2>SwasthyaJyoti</h2>
+          <div class="sub">Your Health, Our Mission</div>
+        </div>
+        <nav>
+          <a href="dashboard.html"><i class="fa fa-chart-pie"></i> Dashboard</a>
+          <a href="statesData.html" class="active"><i class="fa fa-map"></i> States Data</a>
+          <a href="trends.html"><i class="fa fa-chart-line"></i> Disease Trends</a>
+          <a href="reports.html"><i class="fa fa-file-alt"></i> Reports</a>
+          <a href="settings.html"><i class="fa fa-cog"></i> Settings</a>
+          <a href="help.html"><i class="fa fa-circle-question"></i> Help Centre</a>
+          <a href="contact.html"><i class="fa fa-envelope"></i> Contact Us</a>
+        </nav>
+      </div>
+      <div class="footer-note">&copy; 2025 SwasthyaJyoti</div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="page-content">
+      <header>
+        <h1>States Data</h1>
+        <button onclick="window.location.href='index.html'" title="Logout">
+          <i class="fa fa-power-off"></i> Logout
+        </button>
+      </header>
+
+      <!-- States Data Section -->
+      <div id="states" class="section">
+        <h2>State-wise Data</h2>
+        <table id="statesTable">
+          <thead>
+            <tr>
+              <th>State</th>
+              <th>Total Migrants Arrived</th>
+              <th>Registered Migrants</th>
+              <th>% of Affected Migrants</th>
+              <th>Widespread Disease</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <!-- Footer -->
+      <footer class="site-footer">
+        <p>&copy; 2025 SwasthyaJyoti | Connecting Communities with Care</p>
+      </footer>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script>
+    // ✅ Full dataset for 29 Indian states
+    const statesData = [
+      { state: "Andhra Pradesh", total: 22000, registered: 15000, affected: 2400, disease: "Dengue" },
+      { state: "Arunachal Pradesh", total: 5000, registered: 3000, affected: 400, disease: "Malaria" },
+      { state: "Assam", total: 28000, registered: 18000, affected: 3500, disease: "Japanese Encephalitis" },
+      { state: "Bihar", total: 52000, registered: 33000, affected: 7200, disease: "Tuberculosis" },
+      { state: "Chhattisgarh", total: 16000, registered: 10000, affected: 2100, disease: "Malaria" },
+      { state: "Goa", total: 4000, registered: 2500, affected: 300, disease: "Leptospirosis" },
+      { state: "Gujarat", total: 36000, registered: 24000, affected: 4600, disease: "Chikungunya" },
+      { state: "Haryana", total: 18000, registered: 12000, affected: 2300, disease: "Tuberculosis" },
+      { state: "Himachal Pradesh", total: 7000, registered: 4000, affected: 700, disease: "Respiratory Infections" },
+      { state: "Jharkhand", total: 19000, registered: 12000, affected: 2200, disease: "Malaria" },
+      { state: "Karnataka", total: 41000, registered: 27000, affected: 4800, disease: "Dengue" },
+      { state: "Kerala", total: 12000, registered: 8000, affected: 900, disease: "Nipah Virus" },
+      { state: "Madhya Pradesh", total: 45000, registered: 30000, affected: 6700, disease: "Malaria" },
+      { state: "Maharashtra", total: 62000, registered: 42000, affected: 11000, disease: "Tuberculosis" },
+      { state: "Manipur", total: 5000, registered: 3200, affected: 400, disease: "HIV/AIDS" },
+      { state: "Meghalaya", total: 6000, registered: 3700, affected: 500, disease: "Malaria" },
+      { state: "Mizoram", total: 4500, registered: 2800, affected: 350, disease: "HIV/AIDS" },
+      { state: "Nagaland", total: 3500, registered: 2100, affected: 300, disease: "Tuberculosis" },
+      { state: "Odisha", total: 25000, registered: 16000, affected: 3800, disease: "Malaria" },
+      { state: "Punjab", total: 21000, registered: 14000, affected: 2600, disease: "Hepatitis C" },
+      { state: "Rajasthan", total: 34000, registered: 22000, affected: 5000, disease: "Swine Flu" },
+      { state: "Sikkim", total: 3000, registered: 2000, affected: 250, disease: "Respiratory Infections" },
+      { state: "Tamil Nadu", total: 42000, registered: 28000, affected: 4500, disease: "Dengue" },
+      { state: "Telangana", total: 29000, registered: 19000, affected: 3300, disease: "Chikungunya" },
+      { state: "Tripura", total: 6500, registered: 4000, affected: 600, disease: "Malaria" },
+      { state: "Uttar Pradesh", total: 75000, registered: 50000, affected: 14000, disease: "Tuberculosis" },
+      { state: "Uttarakhand", total: 12000, registered: 8000, affected: 1200, disease: "Respiratory Infections" },
+      { state: "West Bengal", total: 70000, registered: 45000, affected: 10500, disease: "Dengue" }
+    ];
+
+    function loadStatesTable() {
+      const tbody = document.querySelector("#statesTable tbody");
+      tbody.innerHTML = "";
+
+      statesData.forEach(item => {
+        const affectedPercent = ((item.affected / item.total) * 100).toFixed(2) + "%";
+        const row = `
+          <tr>
+            <td>${item.state}</td>
+            <td>${item.total.toLocaleString()}</td>
+            <td>${item.registered.toLocaleString()}</td>
+            <td>${affectedPercent}</td>
+            <td>${item.disease}</td>
+          </tr>
+        `;
+        tbody.innerHTML += row;
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", loadStatesTable);
+  </script>
+</body>
+</html>

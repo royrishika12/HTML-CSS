@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SwasthyaJyoti — Generate Unique ID</title>
+  <link rel="icon" href="images/logo.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="sub-style.css" />
+  <style>
+    .id-card {
+      margin-top: 3rem;
+      padding: 2rem;
+      text-align: center;
+      background: #f0f9ff;
+      border: 2px dashed #0a9396;
+      border-radius: 12px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .id-card h2 {
+      color: #023047;
+      margin-bottom: 1rem;
+    }
+    .unique-id {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #0a9396;
+      margin: 1rem 0;
+    }
+    .btn-primary {
+      margin-top: 2rem;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      background: #0a9396;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .btn-primary:hover {
+      background: #007f83;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div>
+        <div class="brand">
+          <img src="images/logo.png" alt="logo" />
+          <h2>SwasthyaJyoti</h2>
+          <div class="sub">Your Health, Our Mission</div>
+        </div>
+        <nav>
+          <a href="index.html"><i class="fa fa-home"></i> Home</a>
+          <a href="login.html"><i class="fa fa-sign-in-alt"></i> Login</a>
+          <a href="register.html"><i class="fa fa-user-plus"></i> Register</a>
+          <a href="generate-id.html" class="active"><i class="fa fa-id-card"></i> Generate ID</a>
+        </nav>
+      </div>
+      <div class="footer-note">&copy; 2025 SwasthyaJyoti</div>
+    </aside>
+
+    <!-- Page Content -->
+    <div class="page-content center-container">
+      <div class="form-card id-card">
+        <h2>✅ Registration Completed</h2>
+        <p>Your Unique SwasthyaJyoti ID is:</p>
+        <div id="uniqueId" class="unique-id">Generating...</div>
+        <button class="btn-primary" onclick="goHome()">Go to Home</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    function generateUniqueId() {
+      return "SJ-" + new Date().getFullYear() + "-" + Math.floor(1000 + Math.random() * 9000);
+    }
+
+    window.onload = () => {
+      const regComplete = localStorage.getItem("registrationComplete");
+      if (regComplete === "true") {
+        const id = generateUniqueId();
+        document.getElementById("uniqueId").innerText = id;
+        localStorage.setItem("userUniqueId", id); // store for later use (QR / profile)
+        localStorage.removeItem("registrationComplete"); // reset
+      } else {
+        alert("⚠️ Registration not completed. Redirecting...");
+        window.location.href = "add-person.html";
+      }
+    };
+
+    function goHome() {
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

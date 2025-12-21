@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SwasthyaJyoti — Language Selected</title>
+  <link rel="icon" href="images/logo.png" type="image/png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #e0f7fa, #ffffff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      color: #023047;
+    }
+    .card {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      max-width: 500px;
+      width: 100%;
+    }
+    h1 {
+      color: #0a9396;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      background: #0a9396;
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .btn:hover {
+      background: #007f83;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1 id="pageTitle">Language Selected</h1>
+    <p id="selectedLanguage"></p>
+    <p id="translatedMessage"></p>
+    <a href="index.html" class="btn"><i class="fa fa-home"></i> Back to Home</a>
+  </div>
+
+  <script>
+    // Get selected language from localStorage
+    const selectedLang = localStorage.getItem("preferredLanguage");
+
+    // Show selected language
+    document.getElementById("selectedLanguage").innerText = 
+      "You selected: " + (selectedLang ? selectedLang : "No language selected");
+
+    // Simple dictionary for demo translations
+    const translations = {
+      English: "Welcome to SwasthyaJyoti — Your Health, Our Mission",
+      "हिन्दी (Hindi)": "स्वस्थ्यज्योति में आपका स्वागत है — आपका स्वास्थ्य, हमारा मिशन",
+      "മലയാളം (Malayalam)": "സ്വസ്ഥ്യജ്യോതി — നിങ്ങളുടെ ആരോഗ്യം, നമ്മുടെ ദൗത്യം",
+      "தமிழ் (Tamil)": "சுவஸ்த்யஜ்யோதி — உங்கள் ஆரோக்கியம், எங்கள் பணி",
+      "తెలుగు (Telugu)": "స్వస్థ్యజ్యోతి — మీ ఆరోగ్యం, మా లక్ష్యం",
+      "বাংলা (Bengali)": "সুস্থ্যজ্যোতি — আপনার স্বাস্থ্য, আমাদের লক্ষ্য",
+      "ગુજરાતી (Gujarati)": "સ્વસ્થ્યજ્યોતિ — તમારું આરોગ્ય, અમારું મિશન",
+      "मराठी (Marathi)": "स्वस्थ्यज्योति — तुमचे आरोग्य, आमचे ध्येय",
+      "ಕನ್ನಡ (Kannada)": "ಸ್ವಸ್ಥ್ಯಜ್ಯೋತಿ — ನಿಮ್ಮ ಆರೋಗ್ಯ, ನಮ್ಮ ಧ್ಯೇಯ",
+      "ਪੰਜਾਬੀ (Punjabi)": "ਸੁਸਥ੍ਯਜ੍ਯੋਤੀ — ਤੁਹਾਡੀ ਸਿਹਤ, ਸਾਡਾ ਮਿਸ਼ਨ",
+      "اردو (Urdu)": "سواسٹھیا جیوتی — آپ کی صحت، ہمارا مشن"
+    };
+
+    // Show translated message
+    document.getElementById("translatedMessage").innerText = 
+      translations[selectedLang] || "Translation not available for this language yet.";
+  </script>
+</body>
+</html>

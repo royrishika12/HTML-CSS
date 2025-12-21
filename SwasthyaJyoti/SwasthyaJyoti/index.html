@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SwasthyaJyoti — Your Health, Our Mission</title>
+  <link rel="icon" href="images/logo.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="SwasthyaJyoti — Portable digital health records for migrant workers." />
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="site-header">
+    <div class="nav-inner">
+      <div class="brand" onclick="location.href='index.html'">
+        <img src="images/logo.png" alt="SwasthyaJyoti logo" class="brand-logo" />
+        <div class="brand-text">
+          <div class="brand-title">SwasthyaJyoti</div>
+          <div class="brand-sub">Your Health, Our Mission</div>
+        </div>
+      </div>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="login.html" class="nav-link">Login</a>
+        <a href="register.html" class="nav-link">Register</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="survey.html" class="nav-link">Survey Form</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Connecting Communities through Health</h1>
+      <p>Portable, multilingual health records for migrant workers — secure, accessible, and connected with ABHA.</p>
+      <div class="hero-buttons">
+        <a href="register.html" class="btn btn-primary">Get Started</a>
+        <a href="login.html" class="btn btn-outline">Login</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="images/placeholder-profile.png" alt="Healthcare illustration" />
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <h2>Why SwasthyaJyoti?</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <i class="fa-solid fa-mobile-screen"></i>
+        <h3>Offline-First PWA</h3>
+        <p>Accessible even with poor internet connectivity.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fa-solid fa-id-card"></i>
+        <h3>QR / NFC Health Cards</h3>
+        <p>Quick access to patient records anytime, anywhere.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fa-solid fa-shield-halved"></i>
+        <h3>Secure & Private</h3>
+        <p>End-to-end encryption with ABHA & ABHA address integration.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fa-solid fa-chart-line"></i>
+        <h3>Real-time Dashboards</h3>
+        <p>Track health trends for communities & interventions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO SECTIONS (Settings, Help, Contact) -->
+  <section class="info-sections">
+    <!-- Settings -->
+    <div class="info-card">
+      <h2><i class="fa fa-cog"></i> Settings</h2>
+      <p>Customize your preferences for SwasthyaJyoti.</p>
+      <div class="form-card">
+        <form>
+          <div class="form-group">
+            <label><input type="checkbox" checked> Email Notifications</label>
+          </div>
+          <div class="form-group">
+            <label><input type="checkbox"> SMS Alerts</label>
+          </div>
+          <div class="form-group">
+            <label><input type="checkbox" checked> Vaccination Reminders</label>
+          </div>
+          <button type="submit" class="btn-primary">Save Preferences</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Help Centre -->
+    <div class="info-card">
+      <h2><i class="fa fa-circle-question"></i> Help Centre</h2>
+      <p>Find quick answers to common questions.</p>
+      <div class="faq-item">
+        <h4><i class="fa fa-user"></i> Register a new person</h4>
+        <p>Go to <strong>Register</strong>, verify OTP, and fill in details.</p>
+      </div>
+      <div class="faq-item">
+        <h4><i class="fa fa-qrcode"></i> Generate QR code</h4>
+        <p>Navigate to <strong>Profile → Generate QR</strong> and click "Download".</p>
+      </div>
+      <div class="faq-item">
+        <h4><i class="fa fa-chart-line"></i> Disease prediction %</h4>
+        <p>Shows predicted spread of communicable diseases in each state.</p>
+      </div>
+    </div>
+
+    <!-- Contact Us -->
+    <div class="info-card">
+      <h2><i class="fa fa-envelope"></i> Contact Us</h2>
+      <p>If you have queries, reach out to us:</p>
+      <div class="contact-list">
+        <p><i class="fa fa-envelope"></i> healthsupport@kerala.gov.in</p>
+        <p><i class="fa fa-phone"></i> +91-471-1234567</p>
+        <p><i class="fa fa-map-marker-alt"></i> Dept. of Health, Kerala, Thiruvananthapuram</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LANGUAGE SELECT -->
+  <section class="language-section">
+    <h2><i class="fa fa-language"></i> Choose Your Language</h2>
+    <p class="lang-sub">Select your preferred language to continue using SwasthyaJyoti</p>
+    <select id="languageSelect">
+      <option>English</option>
+      <option>हिन्दी (Hindi)</option>
+      <option>বাংলা (Bengali)</option>
+      <option>తెలుగు (Telugu)</option>
+      <option>मराठी (Marathi)</option>
+      <option>தமிழ் (Tamil)</option>
+      <option>ગુજરાતી (Gujarati)</option>
+      <option>ಕನ್ನಡ (Kannada)</option>
+      <option>اردو (Urdu)</option>
+      <option>മലയാളം (Malayalam)</option>
+      <option>ਪੰਜਾਬੀ (Punjabi)</option>
+      <option>অসমীয়া (Assamese)</option>
+      <option>ଓଡ଼ିଆ (Odia)</option>
+      <option>मैथिली (Maithili)</option>
+      <option>संस्कृत (Sanskrit)</option>
+      <option>नेपाली (Nepali)</option>
+      <option>कश्मीरी (Kashmiri)</option>
+      <option>कोंकणी (Konkani)</option>
+      <option>Manipuri</option>
+      <option>Dogri</option>
+      <option>Bodo</option>
+    </select>
+     <button class="btn-primary lang-btn" onclick="redirectLanguage()">Continue</button>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="stat">
+      <h3>X+</h3>
+      <p>Registered Workers</p>
+    </div>
+    <div class="stat">
+      <h3>X+</h3>
+      <p>Healthcare Providers</p>
+    </div>
+    <div class="stat">
+      <h3>20+</h3>
+      <p>Languages Supported</p>
+    </div>
+  </section>
+
+  
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>© 2025 SwasthyaJyoti. All rights reserved.</p>
+  </footer>
+
+  <script>
+  function redirectLanguage() {
+    const languageDropdown = document.getElementById("languageSelect");
+    const selectedLang = languageDropdown.value;
+
+    if (!selectedLang) {
+      alert("⚠️ Please select a language first!");
+      return;
+    }
+
+    // Save the language in localStorage (optional)
+    localStorage.setItem("preferredLanguage", selectedLang);
+
+    // Redirect
+    window.location.href = "language.html";
+  }
+</script>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
